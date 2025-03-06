@@ -1,0 +1,29 @@
+<!-- web/templates/index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phân loại Động vật Quý hiếm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Sử dụng Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Phân loại Động vật Quý hiếm</h1>
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Nhận diện</button>
+        </form>
+        {% if result %}
+        <div class="result">
+            <h2>Dự đoán: {{ result|capitalize }}</h2>
+            {% if img_relative_path %}
+            <img src="{{ url_for('static', filename=img_relative_path) }}" alt="Ảnh đã tải lên" class="uploaded-image">
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
